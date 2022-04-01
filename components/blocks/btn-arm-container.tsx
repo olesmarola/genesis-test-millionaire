@@ -8,14 +8,23 @@ import layout from '../../styles/layout.module.scss';
 interface BtnArmContainerProps {
   buttonLabel: string;
   onBtnClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  error?: string;
 }
 
-const BtnArmContainer: FC<BtnArmContainerProps> = ({ children, onBtnClick, buttonLabel }) => (
+const BtnArmContainer: FC<BtnArmContainerProps> = ({
+  children,
+  onBtnClick,
+  buttonLabel,
+  error,
+}) => (
   <div className={layout.gridContainer2ColsMd}>
     <ArmImage />
     <div className={layout.flexContainerColCentered}>
       {children}
-      <Button onClick={onBtnClick}>{buttonLabel}</Button>
+      <Button disabled={!!error} onClick={onBtnClick}>
+        {buttonLabel}
+      </Button>
+      {error && <div className="error">{error}</div>}
     </div>
   </div>
 );

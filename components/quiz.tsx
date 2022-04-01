@@ -1,5 +1,6 @@
 import { FC, useMemo } from 'react';
 import StepWizard from 'react-step-wizard';
+import { nanoid } from 'nanoid';
 
 import Result from './result';
 import QuestionContainer from './blocks/question-container';
@@ -17,7 +18,7 @@ interface QuizProps {
 const Quiz: FC<QuizProps> = ({ questions }) => {
   const questionsSteps = useMemo(() => {
     const mappedQuestions = questions.map((question) => (
-      <QuestionContainer question={question} key={question.question} />
+      <QuestionContainer question={question} key={nanoid()} />
     ));
     mappedQuestions.push(<Result key="result" />);
 

@@ -39,4 +39,4 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 ## Deploy on Vercel
 
-You can find demo version of current test task on Vercer: []()
+You can find demo version of current test task on Vercel: https://genesis-test-millionaire.vercel.app/

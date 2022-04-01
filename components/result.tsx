@@ -13,7 +13,7 @@ import layout from '../styles/layout.module.scss';
 
 const Result: FC<Partial<StepWizardChildProps>> = ({ firstStep }) => {
   const { currentQuestion, setStart, setCurrentQuestion } = useQuizContext();
-  const earnedCount = useMemo(() => moneyList[currentQuestion - 2] || '$0', [currentQuestion]);
+  const earnedCount = useMemo(() => moneyList[currentQuestion - 1], [currentQuestion]);
 
   const onTryAgainClick = useCallback(() => {
     setStart(true);
