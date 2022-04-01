@@ -34,12 +34,7 @@ const StartPage: NextPage = () => {
       return;
     }
 
-    if (
-      questionsList.some(
-        // @ts-ignore
-        (el) => el.answerSelectionType !== 'single' || el.answerSelectionType !== 'multiple'
-      )
-    ) {
+    if (questionsList.some((el) => !['single', 'multiple'].includes(el.answerSelectionType))) {
       setError('Answer type of question need to be `single` or `multiple`');
 
       return;
