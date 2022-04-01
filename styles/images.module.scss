@@ -1,0 +1,10 @@
+@import 'screens';
+
+.armImage {
+  margin-bottom: 1.5rem;
+  max-width: 39rem;
+
+  @media (min-width: $medium) {
+    margin-bottom: 0;
+  }
+}

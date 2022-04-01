@@ -1,0 +1,123 @@
+@import 'screens';
+
+.button {
+  font-size: 1.25rem;
+  border-radius: 0.75rem;
+  background-color: var(--orange-100);
+  padding: 1.25rem 1.5rem;
+  color: var(--white-100);
+  border: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0, 1);
+  max-height: 3rem;
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: var(--orange-80);
+  }
+
+  &:active {
+    background-color: var(--orange-120);
+  }
+
+  @media (min-width: $medium) {
+    max-width: 18.5rem;
+    max-height: 4rem;
+  }
+}
+
+.answerButton {
+  position: relative;
+  background: none;
+  cursor: pointer;
+  border: none;
+  min-height: 3.5rem;
+
+  @media (min-width: $medium) {
+    min-height: 4.5rem;
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: var(--orange-100);
+      }
+    }
+  }
+
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+
+    path {
+      transition: stroke 0.5s cubic-bezier(0.4, 0, 0, 1), fill 0.5s cubic-bezier(0.4, 0, 0, 1);
+    }
+  }
+
+  &:disabled {
+    color: inherit;
+    pointer-events: none;
+  }
+
+  &Label {
+    position: absolute;
+    left: 3rem;
+    right: 3rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 0.875rem;
+    line-height: 116%;
+    text-align: left;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    @media (min-width: $medium) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &Variant {
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+    color: var(--orange-100);
+  }
+
+  &Selected {
+    svg {
+      path {
+        fill: var(--orange-5);
+        stroke: var(--orange-100);
+      }
+    }
+  }
+
+  &Wrong {
+    svg {
+      path {
+        fill: var(--red-5);
+        stroke: var(--red-100);
+      }
+    }
+  }
+
+  &Correct {
+    svg {
+      path {
+        fill: var(--green-5);
+        stroke: var(--green-100);
+      }
+    }
+  }
+}

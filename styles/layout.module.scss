@@ -1,0 +1,273 @@
+@import 'screens';
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 0 1rem;
+  background: var(--black-5);
+
+  @media (min-width: $large) {
+    padding: 0 2.5rem;
+  }
+
+  @media (min-width: $xlarge) {
+    padding: 0 5rem;
+  }
+
+  &GradientBg {
+    background: linear-gradient(to bottom right, transparent 50%, var(--orange-5) 50%) right 0 top 0 /100%
+        100% no-repeat,
+      var(--white-100);
+  }
+
+  &Center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Inner {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.moneyContainer {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 1;
+  user-select: none;
+
+  &Hamburger {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    margin: 4px 0;
+    position: relative;
+    background: var(--black-100);
+    border-radius: 3px;
+    transform-origin: 4px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+    z-index: 1;
+
+    &:first-child {
+      transform-origin: 0 0;
+    }
+
+    &:nth-last-child(2) {
+      transform-origin: 0 100%;
+    }
+
+    @media (min-width: $large) {
+      opacity: 0 !important;
+    }
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+
+    &:checked {
+      & ~ .moneyContainerHamburger {
+        opacity: 1;
+        transform: rotate(45deg) translate(2.5px, -0.5px);
+        background: var(--black-100);
+
+        &:nth-last-child(2) {
+          transform: rotate(-45deg) translate(0.5px, 5px);
+        }
+
+        &:nth-last-child(3) {
+          opacity: 0;
+          transform: rotate(0deg) scale(0.2, 0.2);
+        }
+      }
+
+      & ~ .moneyContainerMenu {
+        transform: none;
+      }
+    }
+
+    @media (min-width: $large) {
+      pointer-events: none;
+
+      & ~ .moneyContainerMenu {
+        transform: none;
+      }
+    }
+  }
+
+  &Menu {
+    --container-width: 23.5rem;
+
+    position: absolute;
+    transform-origin: 0 0;
+    transform: translate(100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    width: var(--container-width);
+    height: 100vh;
+    margin: -2.375rem 0 0 calc((var(--container-width) - 2.5rem) * -1);
+    background: var(--white-100);
+    overflow: hidden;
+    overflow-y: auto;
+    display: grid;
+
+    @media (max-width: calc(#{$large} - 1px)) {
+      --container-width: 100vw;
+      background-color: var(--black-5);
+    }
+  }
+
+  &List {
+    align-self: center;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+
+    &Value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        background-color: var(--black-40);
+        height: 1px;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translate(0, -50%);
+      }
+
+      svg {
+        width: 100%;
+        height: 2rem;
+        position: relative;
+
+        path {
+          stroke: var(--black-40);
+          transition: stroke 0.5s cubic-bezier(0.4, 0, 0, 1);
+          fill: var(--white-100);
+        }
+
+        @media (min-width: $medium) {
+          height: 2.5rem;
+        }
+      }
+
+      & > span {
+        font-size: 0.875rem;
+        line-height: 116%;
+        text-align: center;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.5s cubic-bezier(0.4, 0, 0, 1);
+
+        @media (min-width: $medium) {
+          font-size: 1.25rem;
+        }
+      }
+
+      &Inactive {
+        span {
+          color: var(--black-40);
+        }
+
+        &:before {
+          background-color: var(--black-40);
+        }
+      }
+
+      &Active {
+        svg path,
+        span {
+          stroke: var(--orange-100);
+          color: var(--orange-100);
+        }
+
+        &:before {
+          background-color: var(--orange-100);
+        }
+      }
+    }
+  }
+}
+
+.quizContainer {
+  display: grid;
+  padding: 8.5rem 0 1.5rem;
+  min-height: 100vh;
+
+  @media (min-width: $large) {
+    padding: 8.5rem 23.5rem 7.625rem 0;
+  }
+
+  &Question {
+    align-self: start;
+  }
+
+  &Answers {
+    width: 100%;
+    align-self: end;
+    display: flex;
+    gap: 0.5rem 0;
+    flex-direction: column;
+    max-width: 20rem;
+    margin: 0 auto;
+
+    @media (min-width: $medium) {
+      max-width: initial;
+      margin: 0;
+      display: grid;
+      gap: 2rem 0;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $large) {
+      max-width: 52.75rem;
+    }
+  }
+
+  &ButtonContainer {
+    grid-column: span 2 / span 2;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+
+    @media (min-width: $medium) {
+      margin-top: 0;
+    }
+  }
+}
+
+.gridContainer2ColsMd {
+  display: grid;
+
+  @media (min-width: $medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.flexContainerColCentered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
